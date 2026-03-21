@@ -18,9 +18,9 @@ A beautiful, fully-featured chess game built with vanilla HTML, CSS, and JavaScr
 ## How to Play
 
 ```bash
-# Clone or download the repo
-git clone https://github.com/yourusername/regis-chess.git
-cd regis-chess
+# Clone the repo
+git clone https://github.com/bgl761915-debug/Chess.git
+cd Chess
 
 # Just open index.html in your browser!
 xdg-open index.html       # Linux

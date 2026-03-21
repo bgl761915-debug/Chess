@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chess</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-texture"></div>
+
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-icon">♔</span>
+      <h1 class="brand-name">REGIS</h1>
+      <p class="brand-sub">Chess Engine</p>
+    </div>
+
+    <div class="status-panel">
+      <div class="turn-indicator" id="turnIndicator">
+        <div class="turn-dot white-dot"></div>
+        <span id="turnText">White to move</span>
+      </div>
+      <div class="check-alert" id="checkAlert" style="display:none">
+        ⚠ CHECK
+      </div>
+    </div>
+
+    <div class="captured-panel">
+      <div class="captured-row">
+        <span class="captured-label">Captured</span>
+        <div class="captured-pieces" id="capturedWhite"></div>
+      </div>
+      <div class="captured-row">
+        <span class="captured-label"></span>
+        <div class="captured-pieces" id="capturedBlack"></div>
+      </div>
+    </div>
+
+    <div class="score-panel">
+      <div class="score-box">
+        <span class="score-label">WHITE</span>
+        <span class="score-val" id="scoreWhite">0</span>
+      </div>
+      <div class="score-divider">—</div>
+      <div class="score-box">
+        <span class="score-label">BLACK</span>
+        <span class="score-val" id="scoreBlack">0</span>
+      </div>
+    </div>
+
+    <div class="move-log" id="moveLog">
+      <div class="move-log-title">Move History</div>
+      <div class="move-log-body" id="moveLogBody"></div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-primary" onclick="newGame()">New Game</button>
+      <button class="btn btn-secondary" onclick="undoMove()">↩ Undo</button>
+      <div class="mode-toggle">
+        <span class="mode-label">vs AI</span>
+        <label class="toggle">
+          <input type="checkbox" id="aiToggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="difficulty-row" id="difficultyRow">
+        <span class="mode-label">Depth</span>
+        <select id="aiDepth" class="depth-select">
+          <option value="1">Easy</option>
+          <option value="2" selected>Medium</option>
+          <option value="3">Hard</option>
+        </select>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Board Area -->
+  <main class="board-area">
+    <div class="board-wrap">
+      <div class="coords-top" id="coordsTop"></div>
+      <div class="board-row">
+        <div class="coords-left" id="coordsLeft"></div>
+        <div class="board" id="board"></div>
+        <div class="coords-right" id="coordsRight"></div>
+      </div>
+      <div class="coords-bottom" id="coordsBottom"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Promotion Modal -->
+<div class="modal-overlay" id="promoOverlay" style="display:none">
+  <div class="modal">
+    <h2 class="modal-title">Promote Pawn</h2>
+    <div class="promo-choices" id="promoChoices"></div>
+  </div>
+</div>
+
+<!-- Game Over Modal -->
+<div class="modal-overlay" id="gameOverOverlay" style="display:none">
+  <div class="modal">
+    <div class="modal-icon" id="gameOverIcon">♔</div>
+    <h2 class="modal-title" id="gameOverTitle">Checkmate!</h2>
+    <p class="modal-sub" id="gameOverSub">White wins</p>
+    <button class="btn btn-primary" onclick="newGame();closeModals()">Play Again</button>
+  </div>
+</div>
+
+<script src="chess.js"></script>
+<script src="ai.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>

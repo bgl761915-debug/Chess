@@ -44,7 +44,7 @@ function renderBoard() {
       const sq = document.createElement('div');
 
       // matches CSS: .sq.light / .sq.dark
-      sq.className = 'sq ' + ((r + c) % 2 === 0 ? 'light' : 'dark');
+      sq.className = 'sq ' + ((r + c) % 2 === 1 ? 'light' : 'dark');
 
       // Last move highlight
       if (lastMove &&
@@ -311,6 +311,10 @@ function maybeTriggerAI() {
   if (state.status === 'checkmate' || state.status === 'stalemate' || state.status === 'draw') return;
 
   const depth = parseInt(document.getElementById('aiDepth').value) || 2;
+
+  // Show thinking state
+  const turnText = document.getElementById("turnText");
+  if (turnText) turnText.textContent = "AI thinking...";
 
   setTimeout(() => {
     const move = getBestMove(state, depth);

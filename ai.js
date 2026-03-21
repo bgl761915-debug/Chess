@@ -103,7 +103,6 @@ function minimax(s, depth, alpha, beta, maximizing) {
   let best = { score: maximizing ? -Infinity : Infinity, move: null };
 
   for (const move of ordered) {
-    // Check if pawn promotion
     const piece = s.board[move.from.r][move.from.c];
     const isPromo = type(piece)==='P' && (move.to.r===0||move.to.r===7);
     const ns = executeMove(s, move, isPromo ? 'Q' : 'Q');
@@ -116,13 +115,17 @@ function minimax(s, depth, alpha, beta, maximizing) {
       if (result.score < best.score) { best.score=result.score; best.move=move; }
       beta = Math.min(beta, best.score);
     }
-    if (beta <= alpha) break; // pruning
+    if (beta <= alpha) break;
   }
   return best;
 }
 
-// Get best move for AI (black)
-function getAIMove(s, depth=2) {
-  const result = minimax(s, depth, -Infinity, Infinity, s.turn==='w');
+// Get best move for AI (black) — minimizing since black wants lowest score
+function getAIMove(s, depth) {
+  depth = depth || 2;
+  const result = minimax(s, depth, -Infinity, Infinity, false);
   return result.move;
 }
+
+// Alias so both names work
+const getBestMove = getAIMove;

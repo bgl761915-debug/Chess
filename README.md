@@ -27,9 +27,10 @@ xdg-open index.html       # Linux
 open index.html           # macOS
 start index.html          # Windows
 ```
-```
-   #mobile players can open this link:https://bgl761915-debug.github.io/Chess/
-```
+
+   ```#mobile players can open this link: ```
+``` https://bgl761915-debug.github.io/Chess/```
+
 No server needed. No npm install. No build step. Just open and play.
 
 ## Controls
